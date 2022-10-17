@@ -1,4 +1,9 @@
 language : java
 install : true
-script: mvn clean package -DskipTests=true
-before_script: cd api
+#script: mvn clean package -DskipTests=true
+before_script: 
+  - cd front
+  - npm install
+  - npm start
+  - cd -
+  - cd api
