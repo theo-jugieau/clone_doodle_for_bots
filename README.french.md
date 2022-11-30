@@ -1,5 +1,5 @@
 # Doodle in quarkus
-
+ouais ouais ouais
 Ce repository est une application de type doodle développée avec quarkus.io pour le back et angular pour le front. 
 
 Elle initialise automatiquement un pad pour la réunion et un salon de discussion. 
