@@ -51,3 +51,12 @@ C’est donc là que va commencer la partie intéressante qui va être la person
 
 Vous retrouverez la documentation des webhooks events associés à github [ici](https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads)
 
+## Rultor, a DevOps team assistant
+
+Rultor permet d'automatiser les opérations git comme merge, deploy et release avec une interface chat-bot intégré dans les commentaires d'une pull request.
+Rultor permet d'isoler le script de déploiement dans son propre environnement virtuel en utilisant Docker. Ce qui permet de réduire les états externes qui pourrait entrainer des erreurs lors des tests.
+
+Lors d'une pull request, lorsqu'on va lui demander, Rultor va récupérer la branche master et y appliquer les modifications proposés. Il va ensuite tout exécuter sur son Docker et si tout se passe bien sans erreurs, il va merge la branche dans la branche master. Cela permet de réduire les risques que les développeurs cassent la branche master en faisant une pull request contenant des erreurs. Grâce à cela, les développeurs ont moins peur de faire des erreurs et augmente leur productivité. 
+Rultor est très facilement utilisable grâce à des mots clés à mettre dans les commentaires. 
+
+### Comment mettre en place Rultor ? 
