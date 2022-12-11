@@ -22,6 +22,49 @@ On peut trouver les autres options de configuration [ici](https://docs.renovateb
 * Exemple d'une pull request réalisée par le bot : *
  ![image](https://user-images.githubusercontent.com/102468174/206925292-2d8fbc69-5eac-4a1e-b7ab-1d11fead0f69.png)
 
+## Rultor, a DevOps team assistant
+
+Rultor permet d'automatiser les opérations git comme merge, deploy et release avec une interface chat-bot intégré dans les commentaires d'une pull request.
+Rultor permet d'isoler le script de déploiement dans son propre environnement virtuel en utilisant Docker. Ce qui permet de réduire les états externes qui pourrait entrainer des erreurs lors des tests.
+
+Lors d'une pull request, lorsqu'on va lui demander, Rultor va récupérer la branche master et y appliquer les modifications proposés. Il va ensuite tout exécuter sur son Docker et si tout se passe bien sans erreurs, il va merge la branche dans la branche master. Cela permet de réduire les risques que les développeurs cassent la branche master en faisant une pull request contenant des erreurs. Grâce à cela, les développeurs ont moins peur de faire des erreurs et augmente leur productivité. 
+Rultor est très facilement utilisable grâce à des mots clés à mettre dans les commentaires. 
+
+### Comment mettre en place Rultor ? 
+
+Dans un premier temps il faut récupérer rultor dans le [Marketplace de Git](https://github.com/marketplace/rultor-com) et récupérer le fichier rultor.yml de ce [dépôt](https://github.com/yegor256/rultor) qui sera à mettre à la racine du projet.
+
+Tout d'abord il faut créer un serveur Ubuntu accessible via l'adresse `b4.rultor.com`, Rultor s'y connectera via SSH. Il faut ensuite installer Docker Engine dessus.
+```
+$ sudo apt-get update
+$ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+```
+
+Il faut ensuite configurer le serveur pour donner les droits d'accès à Rultor.
+```
+$ apt-get install -y bc
+$ groupadd docker
+$ adduser rultor
+$ gpasswd -a rultor docker
+$ echo 'rultor ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+$ mkdir /home/rultor/.ssh
+$ cat > /home/rultor/.ssh/authorized_keys
+$ chown rultor:rultor -R /home/rultor/.ssh
+$ chmod 600 /home/rultor/.ssh/authorized_keys
+```
+
+Puis, nous devons créer l'image que le docker va devoir utiliser.
+
+On créé un conteneur `sudo docker run -i -t ubuntu /bin/bash`, on installe les packages désirés, et on génere son image `sudo docker commit 215d2696e8ad rultor/beta`.
+Il est aussi possible de récupérer l'[image par défaut de Rultor](https://hub.docker.com/r/yegor256/rultor-image/).
+
+Nous envoyons ensuite l'image sur le hub Docker `sudo docker push rultor/beta` et nous modifions le fichier rultor.yml : 
+```
+docker:
+  image: rultor/beta
+```
+
+Enfin, pour exécuter Rultor il suffit de faire une pull request sur la branche master du projet git et écrire `@rultor merge` en commentaire.
 
 ## Créer son propre bot avec Probot :
 
