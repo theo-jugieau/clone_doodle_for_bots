@@ -60,3 +60,37 @@ Lors d'une pull request, lorsqu'on va lui demander, Rultor va récupérer la bra
 Rultor est très facilement utilisable grâce à des mots clés à mettre dans les commentaires. 
 
 ### Comment mettre en place Rultor ? 
+
+Dans un premier temps il faut récupérer rultor dans le [Marketplace de Git](https://github.com/marketplace/rultor-com) et récupérer le fichier rultor.yml de ce [dépôt](https://github.com/yegor256/rultor) qui sera à mettre à la racine du projet.
+
+Tout d'abord il faut créer un serveur Ubuntu accessible via l'adresse `b4.rultor.com`, Rultor s'y connectera via SSH. Il faut ensuite installer Docker Engine dessus.
+```
+$ sudo apt-get update
+$ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+```
+
+Il faut ensuite configurer le serveur pour donner les droits d'accès à Rultor.
+```
+$ apt-get install -y bc
+$ groupadd docker
+$ adduser rultor
+$ gpasswd -a rultor docker
+$ echo 'rultor ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+$ mkdir /home/rultor/.ssh
+$ cat > /home/rultor/.ssh/authorized_keys
+$ chown rultor:rultor -R /home/rultor/.ssh
+$ chmod 600 /home/rultor/.ssh/authorized_keys
+```
+
+Puis, nous devons créer l'image que le docker va devoir utiliser.
+
+On créé un conteneur `sudo docker run -i -t ubuntu /bin/bash`, on installe les packages désirés, et on génere son image `sudo docker commit 215d2696e8ad rultor/beta`.
+Il est aussi possible de récupérer l'[image par défaut de Rultor](https://hub.docker.com/r/yegor256/rultor-image/).
+
+Nous envoyons ensuite l'image sur le hub Docker `sudo docker push rultor/beta` et nous modifions le fichier rultor.yml : 
+```
+docker:
+  image: rultor/beta
+```
+
+Enfin, pour exécuter Rultor il suffit de faire une pull request sur la branche master du projet git et écrire `@rultor merge` en commentaire.
