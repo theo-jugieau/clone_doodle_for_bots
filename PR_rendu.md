@@ -109,6 +109,52 @@ Vous retrouverez la documentation des webhooks events associés à github [ici](
 Il y a également de nombreux exemples de bots réalisés avec probot. Par exemple le bot [WIP](https://github.com/wip/app), d'ajouter un marqueur à la PR lorsque l'on ajoute WIP au nom de sa PR permettant ainsi d'éviter qu'elle sa fasse merger par erreur par quelqu'un d'autre. 
 On pourrait par exemple imaginer un bot qui applique un linter aux pull requests afin que tout les développeurs aient la même mise en page de code.
 
+## Repairnator
+Repairnator est un bot conçu pour aider au développement de programmes Java. Il peut automatiquement identifier et corriger les erreurs dans le code Java en trouvant les erreurs et selon le type d'exception, en trouvant un patch qui peut être appliqué au code pour remédier à l'erreur, ce qui facilite la construction et la maintenance de projets pour les développeurs.
+
+Dans le cadre de ce projet, nous avons exploré repairnator en tant qu'application Github et en tant que plugin Maven car ce sont les déploiements les plus développés du bot. Cependant, il convient de noter que le bot est également disponible en tant qu'outil de ligne de commande, scanner Travis CI et en tant que scanner avec Flacocobot.
+
+### Comment installer Repairnator sur GitHub
+
+Pour utiliser Repairnator dans un dépôt GitHub, vous aurez besoin d'avoir un compte Travis CI valide. En plus d'avoir l'application Travis Ci github active sur le repository.
+Allez sur la page GitHub de Repairnator et cliquez sur "Installer le bot".
+![image](https://imgur.com/OWdmmvS.png)
+
+Assurez-vous que le bot est actif dans le dépôt correct.
+![image](https://imgur.com/glk1FYR.png)
+
+Dans la racine de votre dépôt, créez un fichier .travis.yml qui inclut les étapes pour que Travis construise votre projet. Par exemple :
+
+    cd folder/
+    ignore tests = true
+Finalement assurez-vous que le fichier .travis.yml contient la ligne :
+    
+    language = java
+Pour que repairnator sache qu'il doit être actif.
+![image](https://imgur.com/8ja2LID.png)
+
+### Comment installer Repairnator dans un projet Maven
+
+Pour utiliser Repairnator dans un projet Maven, vous devrez installer le plugin Repairnator en l'ajoutant en tant que plugin dans le pom.xml.
+
+    <!-- https://mvnrepository.com/artifact/fr.inria.repairnator/repairnator-core -->
+    <dependency>
+        <groupId>fr.inria.repairnator</groupId>
+        <artifactId>repairnator-core</artifactId>
+        <version>3.4</version>
+    </dependency>
+
+### Comment utiliser Repairnator
+
+Une fois que vous avez installé Repairnator dans votre dépôt GitHub ou votre projet Maven, il essaiera automatiquement d'identifier et de corriger les erreurs qui se produisent pendant le processus de building.
+
+Sur GitHub, Repairnator créera une pull request avec les modifications proposées, et laissera un commentaire indiquant ses actions sur la pull request échouée.
+![image](https://imgur.com/iSSi7Hu.png)
+
+Si repairnator trouve un patch adapté, il modifiera le code afin que la pull request n'ait aucun conflit avec la branche de base.
+
+Sur Maven, Repairnator essaiera directement de corriger le code.
+
 ## Conclusion sur l'utilisation des bots, et difficultés rencontrés
 
 Nous avons vu qu'il existait des bots pour faire des taches assez variés sur des dépôts git, cependant ils n'ont pas forcément tous leur place. Notamment tout ce qui est bot pour lancer une suite de test n'a pas un énorme intérêt étant donné que d'autres outils comme Jenkins le font très bien.
