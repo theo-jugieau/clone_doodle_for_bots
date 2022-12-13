@@ -22,7 +22,7 @@ Par exemple, on peut ajouter l'option d'auto-merging des PR : ``"automerge": tru
 ou bien programmer les horaires des PR : ``"schedule": ["before 2am"]``
 
 On peut trouver les autres options de configuration [ici](https://docs.renovatebot.com/configuration-options/)
-** Exemple d'une pull request réalisée par le bot : **
+**Exemple d'une pull request réalisée par le bot : **
  ![image](https://user-images.githubusercontent.com/102468174/206925292-2d8fbc69-5eac-4a1e-b7ab-1d11fead0f69.png)
 
 ## Rultor, a DevOps team assistant
