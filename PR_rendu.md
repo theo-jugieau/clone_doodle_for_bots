@@ -108,6 +108,7 @@ Ensuite suivre les indications, ajouter votre bot à un repos(cf renovatebot).
 ![image](https://user-images.githubusercontent.com/102468174/206924699-60e4a52d-0072-4f2c-938f-10d490db67e9.png)
 
 ![image](https://user-images.githubusercontent.com/102468174/207423433-2eb63231-655f-4110-8de0-2ed9746a7ecc.png)
+
 Une fois fait, redémarrez le serveur: ctrl+C, npm start.
 Pour voir si ça fonctionne avec le cas d’exemple des issues: créer un nouvel issue, et si tout se passe bien, le bot doit vous répondre.
 
