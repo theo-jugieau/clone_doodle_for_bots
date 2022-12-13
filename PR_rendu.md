@@ -5,21 +5,21 @@
 L'objectif de cette PR est de présenter différents bots servant à automatiser des tâches sur des dépôts git.
 
 ## Renovatebot :
-Ce bot sert à mettre à jour les dépendances dans un projet dès qu’il en trouve de nouvelles, il va donc émettre des pulls requests sur le repos(github, gitlab, bitbucket…) et même les auto-merger(si paramétré ainsi).
+Ce bot sert à mettre à jour les dépendances dans un projet dès qu’il en trouve de nouvelles, il va donc émettre des pulls requests sur le repos (github, gitlab, bitbucket …) et même les auto-merger (si paramétré ainsi).
 
-**Remarque :** l’installation est directe pour github sinon l’application doit être self-hosted.
+**Remarque :** L’installation est directe pour github sinon l’application doit être self-hosted.
 
 **Installation sur un repos github :**
-Se rendre sur [GitHub Apps - Renovate](https://github.com/apps/renovate) et installer le bot sur le projet ciblé.
+Rendez-vous sur [GitHub Apps - Renovate](https://github.com/apps/renovate) et installez le bot sur le projet ciblé.
 ![image](https://user-images.githubusercontent.com/102468174/207422325-c620f2bd-f548-4161-b9d8-55f5d5a5342b.png)
 
-puis 
+Puis 
 
 ![image](https://user-images.githubusercontent.com/102468174/207422661-86dbdad3-5b17-4944-a48d-7255ed51ef95.png)
 
-Ensuite se rendre sur [GitHub Apps - Renovate](https://github.com/apps/renovate) pour configurer le bot sur un projet spécifique si ce n’est pas déjà fait avec la phase d’installation.
+Ensuite, rendez-vous sur [GitHub Apps - Renovate](https://github.com/apps/renovate) pour configurer le bot sur un projet spécifique si ce n’est pas déjà fait avec la phase d’installation.
 
-Après l’installation/configuration le bot va émettre une première pull request sur votre dépôt afin de créer un fichier renovate.json qui contiendra les paramètres du bot que vous pourrez alors modifier par la suite si besoin.
+Après l’installation et configuration, le bot va émettre une première pull request sur votre dépôt afin de créer un fichier renovate.json qui contiendra les paramètres du bot que vous pourrez alors modifier par la suite si besoin.
 
 Par exemple, on peut ajouter l'option d'auto-merging des PR : ``"automerge": true``,
 ou bien programmer les horaires des PR : ``"schedule": ["before 2am"]``
@@ -39,7 +39,7 @@ Rultor est très facilement utilisable grâce à des mots clés à mettre dans l
 
 ### Comment mettre en place Rultor ? 
 
-Dans un premier temps il faut récupérer rultor dans le [Marketplace de Git](https://github.com/marketplace/rultor-com) et récupérer le fichier rultor.yml de ce [dépôt](https://github.com/yegor256/rultor) qui sera à mettre à la racine du projet.
+Dans un premier temps, il faut récupérer Rultor dans le [Marketplace de Git](https://github.com/marketplace/rultor-com) et récupérer le fichier rultor.yml de ce [dépôt](https://github.com/yegor256/rultor) qui sera à mettre à la racine du projet.
 
 Tout d'abord il faut créer un serveur Ubuntu accessible via l'adresse `b4.rultor.com`, Rultor s'y connectera via SSH. Il faut ensuite installer Docker Engine dessus.
 ```
@@ -71,13 +71,13 @@ docker:
   image: rultor/beta
 ```
 
-Enfin, pour exécuter Rultor il suffit de faire une pull request sur la branche master du projet git et écrire `@rultor merge` en commentaire.
+Enfin, pour exécuter Rultor, il suffit de faire une pull request sur la branche master du projet git et écrire `@rultor merge` en commentaire.
 
 ## Créer son propre bot avec Probot :
 
-### Prérequis: npm, node, npx installé sur votre machine
+### Prérequis : npm, node, npx installés sur votre machine
 
-**/!\\** la doc indique une version de node au moins 10, mais ce n'est pas à jour : il faut une version strictement supérieure à la 10.(nous avons fait avec une 12)
+**/!\\** La doc indique une version de node au moins 10, mais ce n'est pas à jour : il faut une version strictement supérieure à la 10 (nous avons fait avec la 12).
 
 Pour l’installation de node, nous conseillons de passer par le gestionnaire de package nvm. 
 
@@ -89,39 +89,39 @@ Pour l’installation de node, nous conseillons de passer par le gestionnaire de
 Si pas fait par défaut, activez le node que vous venez d’installer :
 ``nvm use v12.10.0``
 
-**Installation npx:** ``npm install -g npx``
+**Installation npx :** ``npm install -g npx``
 
 ### Probot :
-Exécutez  ``npx create-probot-app my-first-app``
-des questions que vous pouvez ignorer vous sont posées
+Exécutez  ``npx create-probot-app my-first-app``.
+Des questions que vous pouvez ignorer vous sont posées.
 ![image](https://user-images.githubusercontent.com/102468174/207423162-e6b1b240-8996-4aca-842e-177db58269b4.png)
 
-Vous avez alors un répertoire créé, allez y puis exécuter
-``npm start``
+Un répertoire se crée alors, allez-y puis exécutez
+``npm start``.
 ![image](https://user-images.githubusercontent.com/102468174/207423253-7d7916c8-9efb-4085-84f8-82ba55f364c4.png)
 
-Se rendre ensuite sur votre navigateur à l’adresse indiquée dans votre navigateur
+Rendez-vous ensuite sur votre navigateur à l’adresse indiquée dans votre navigateur.
 ![image](https://user-images.githubusercontent.com/102468174/206924655-3bbe8151-edef-48c6-b1c4-2d3e6d75548d.png)
 
-Ensuite suivre les indications, ajouter votre bot à un repos(cf renovatebot).
+Ensuite suivez les indications, ajoutez votre bot à un repos (cf renovatebot).
 
 ![image](https://user-images.githubusercontent.com/102468174/206924699-60e4a52d-0072-4f2c-938f-10d490db67e9.png)
 
 ![image](https://user-images.githubusercontent.com/102468174/207423433-2eb63231-655f-4110-8de0-2ed9746a7ecc.png)
 
-Une fois fait, redémarrez le serveur: ctrl+C, npm start.
-Pour voir si ça fonctionne avec le cas d’exemple des issues: créer un nouvel issue, et si tout se passe bien, le bot doit vous répondre.
+Une fois fait, redémarrez le serveur: Ctrl+C, puis ``npm start``.
+Pour voir si ça fonctionne avec le cas d’exemple des issues : créez un nouvel issue, et si tout se passe bien, le bot doit vous répondre.
 
-C’est donc là que va commencer la partie intéressante qui va être la personnalisation du bot et ça se passe dans le fichier index.js de votre bot.
+C’est donc là que va commencer la partie intéressante qui va être la personnalisation du bot, qui est contenue dans le fichier index.js de votre bot.
 
 Vous retrouverez la documentation des webhooks events associés à github [ici](https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads)
-Il y a également de nombreux exemples de bots réalisés avec probot. Par exemple le bot [WIP](https://github.com/wip/app), d'ajouter un marqueur à la PR lorsque l'on ajoute WIP au nom de sa PR permettant ainsi d'éviter qu'elle sa fasse merger par erreur par quelqu'un d'autre. 
-On pourrait par exemple imaginer un bot qui applique un linter aux pull requests afin que tout les développeurs aient la même mise en page de code, ou alors un bot qui créé des tickets lorsqu'il détecte des commentaires TODO dans le code.
+Il y a également de nombreux exemples de bots réalisés avec probot. Par exemple, le bot [WIP](https://github.com/wip/app) ajoute un marqueur à la PR lorsque l'on ajoute WIP au nom de sa PR permettant ainsi d'éviter qu'elle se fasse merger par erreur par quelqu'un d'autre. 
+On pourrait par exemple imaginer un bot qui applique un linter aux pull requests afin que tout les développeurs aient la même mise en page de code, ou alors un bot qui crée des tickets lorsqu'il détecte des commentaires TODO dans le code.
 
 ## Repairnator
 Repairnator est un bot conçu pour aider au développement de programmes Java. Il peut automatiquement identifier et corriger les erreurs dans le code Java en trouvant les erreurs et selon le type d'exception, en trouvant un patch qui peut être appliqué au code pour remédier à l'erreur, ce qui facilite la construction et la maintenance de projets pour les développeurs.
 
-Dans le cadre de ce projet, nous avons exploré repairnator en tant qu'application Github et en tant que plugin Maven car ce sont les déploiements les plus développés du bot. Cependant, il convient de noter que le bot est également disponible en tant qu'outil de ligne de commande, scanner Travis CI et en tant que scanner avec Flacocobot.
+Dans le cadre de ce projet, nous avons exploré Repairnator en tant qu'application Github et en tant que plugin Maven car ce sont les déploiements les plus développés du bot. Cependant, il convient de noter que le bot est également disponible en tant qu'outil de ligne de commande, scanner Travis CI et en tant que scanner avec Flacocobot.
 
 ### Comment installer Repairnator sur GitHub
 
@@ -139,7 +139,7 @@ Dans la racine de votre dépôt, créez un fichier .travis.yml qui inclut les é
 Finalement assurez-vous que le fichier .travis.yml contient la ligne :
     
     language = java
-Pour que repairnator sache qu'il doit être actif.
+Pour que Repairnator sache qu'il doit être actif.
 
 ![image](https://imgur.com/8ja2LID.png)
 
@@ -161,7 +161,7 @@ Une fois que vous avez installé Repairnator dans votre dépôt GitHub ou votre 
 Sur GitHub, Repairnator créera une pull request avec les modifications proposées, et laissera un commentaire indiquant ses actions sur la pull request échouée.
 ![image](https://imgur.com/iSSi7Hu.png)
 
-Si repairnator trouve un patch adapté, il modifiera le code afin que la pull request n'ait aucun conflit avec la branche de base.
+Si Repairnator trouve un patch adapté, il modifiera le code afin que la pull request n'ait aucun conflit avec la branche de base.
 
 Sur Maven, Repairnator essaiera directement de corriger le code.
 
@@ -169,4 +169,4 @@ Sur Maven, Repairnator essaiera directement de corriger le code.
 
 Nous avons vu qu'il existait des bots pour faire des tâches assez variées sur des dépôts git, cependant ils n'ont pas forcément tous leur place. Par exemple, un bot pour lancer une suite de tests n'a pas un énorme intérêt étant donné que d'autres outils comme Jenkins le font très bien. En revanche, un bot mettant à jour les dépendances ou facilitant la lecture du dêpots aux développeurs peut limiter l'erreur humaine.
 
-Pour ce qui est des difficultés rencontrées durant ces TPs, on mentionnera en premier lieu les problèmes d'environnements : node et docker. Mais également le fait que seul le propriétaire du dépôt puisse enregistrer les bots rendant le travail en groupe plus compliqué : nous aurions aimé avoir un seul dépôt avec les bots de chacun ainsi au même endroit. Enfin, de nombreux bots doivent être self-hosted ce qui reste plus contraignant.
+Pour ce qui est des difficultés rencontrées durant ces TPs, on mentionnera en premier lieu les problèmes d'environnements : node et docker. Il y a également le fait que seul le propriétaire du dépôt puisse enregistrer les bots ce qui rend le travail en groupe plus compliqué : nous aurions aimé avoir un seul dépôt avec les bots de chacun ainsi au même endroit. Enfin, de nombreux bots doivent être self-hosted ce qui reste plus contraignant.
