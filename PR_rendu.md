@@ -167,6 +167,6 @@ Sur Maven, Repairnator essaiera directement de corriger le code.
 
 ## Conclusion sur l'utilisation des bots, et difficultés rencontrées
 
-Nous avons vu qu'il existait des bots pour faire des tâches assez variés sur des dépôts git, cependant ils n'ont pas forcément tous leur place. Par exemple, un bot pour lancer une suite de tests n'a pas un énorme intérêt étant donné que d'autres outils comme Jenkins le font très bien. En revanche, un bot mettant à jour les dépendances ou facilitant la lecture du dêpots aux développeurs peut limiter l'erreur humaine.
+Nous avons vu qu'il existait des bots pour faire des tâches assez variées sur des dépôts git, cependant ils n'ont pas forcément tous leur place. Par exemple, un bot pour lancer une suite de tests n'a pas un énorme intérêt étant donné que d'autres outils comme Jenkins le font très bien. En revanche, un bot mettant à jour les dépendances ou facilitant la lecture du dêpots aux développeurs peut limiter l'erreur humaine.
 
 Pour ce qui est des difficultés rencontrées durant ces TPs, on mentionnera en premier lieu les problèmes d'environnements : node et docker. Mais également le fait que seul le propriétaire du dépôt puisse enregistrer les bots rendant le travail en groupe plus compliqué : nous aurions aimé avoir un seul dépôt avec les bots de chacun ainsi au même endroit. Enfin, de nombreux bots doivent être self-hosted ce qui reste plus contraignant.
