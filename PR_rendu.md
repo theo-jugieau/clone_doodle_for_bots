@@ -1,12 +1,15 @@
 # Software bots in Software Engineering
+
+**BARTHELAT Etienne - CONDORI Miguel - LEMAITRE Lucas - MOLL Jean-Loup - JUGIEAU Théo**
+
 L'objectif de cette PR est de présenter différents bots servant à automatiser des tâches sur des dépôts git.
 
 ## Renovatebot :
 Ce bot sert à mettre à jour les dépendances dans un projet dès qu’il en trouve de nouvelles, il va donc émettre des pulls requests sur le repos(github, gitlab, bitbucket…) et même les auto-merger(si paramétré ainsi).
 
-*Remarque :* l’installation est directe pour github sinon l’application doit être self-hosted.
+**Remarque :** l’installation est directe pour github sinon l’application doit être self-hosted.
 
-*Installation sur un repos github :*
+**Installation sur un repos github :**
 Se rendre sur [GitHub Apps - Renovate](https://github.com/apps/renovate) et installer le bot sur le projet ciblé.
 ![image](https://user-images.githubusercontent.com/102468174/206925436-9044cadc-d2b4-4637-aafd-331fd9e21f5f.png)
 ![image](https://user-images.githubusercontent.com/102468174/206925461-ae3d27dd-a352-496c-9018-dc62c41f813d.png)
@@ -19,7 +22,7 @@ Par exemple, on peut ajouter l'option d'auto-merging des PR : ``"automerge": tru
 ou bien programmer les horaires des PR : ``"schedule": ["before 2am"]``
 
 On peut trouver les autres options de configuration [ici](https://docs.renovatebot.com/configuration-options/)
-* Exemple d'une pull request réalisée par le bot : *
+** Exemple d'une pull request réalisée par le bot : **
  ![image](https://user-images.githubusercontent.com/102468174/206925292-2d8fbc69-5eac-4a1e-b7ab-1d11fead0f69.png)
 
 ## Rultor, a DevOps team assistant
@@ -85,7 +88,7 @@ Si pas fait par défaut, activez le node que vous venez d’installer :
 
 ### Probot :
 Exécutez  ``npx create-probot-app my-first-app``
-des questions que vous pouvez ignorer vous sont posées, éviter juste la version ts(pas réussi à la faire marcher chez moi, j’ai pris la version js du coup)
+des questions que vous pouvez ignorer vous sont posées
 ![image](https://user-images.githubusercontent.com/102468174/206924377-a82c3965-64cc-41b9-8320-a7f8582e9cb4.png)
 
 Vous avez alors un répertoire créé, allez y puis exécuter
@@ -107,7 +110,7 @@ C’est donc là que va commencer la partie intéressante qui va être la person
 
 Vous retrouverez la documentation des webhooks events associés à github [ici](https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads)
 Il y a également de nombreux exemples de bots réalisés avec probot. Par exemple le bot [WIP](https://github.com/wip/app), d'ajouter un marqueur à la PR lorsque l'on ajoute WIP au nom de sa PR permettant ainsi d'éviter qu'elle sa fasse merger par erreur par quelqu'un d'autre. 
-On pourrait par exemple imaginer un bot qui applique un linter aux pull requests afin que tout les développeurs aient la même mise en page de code.
+On pourrait par exemple imaginer un bot qui applique un linter aux pull requests afin que tout les développeurs aient la même mise en page de code, ou alors un bot qui créé des tickets lorsqu'il détecte des commentaires TODO dans le code.
 
 ## Repairnator
 Repairnator est un bot conçu pour aider au développement de programmes Java. Il peut automatiquement identifier et corriger les erreurs dans le code Java en trouvant les erreurs et selon le type d'exception, en trouvant un patch qui peut être appliqué au code pour remédier à l'erreur, ce qui facilite la construction et la maintenance de projets pour les développeurs.
@@ -131,6 +134,7 @@ Finalement assurez-vous que le fichier .travis.yml contient la ligne :
     
     language = java
 Pour que repairnator sache qu'il doit être actif.
+
 ![image](https://imgur.com/8ja2LID.png)
 
 ### Comment installer Repairnator dans un projet Maven
@@ -155,8 +159,8 @@ Si repairnator trouve un patch adapté, il modifiera le code afin que la pull re
 
 Sur Maven, Repairnator essaiera directement de corriger le code.
 
-## Conclusion sur l'utilisation des bots, et difficultés rencontrés
+## Conclusion sur l'utilisation des bots, et difficultés rencontrées
 
-Nous avons vu qu'il existait des bots pour faire des taches assez variés sur des dépôts git, cependant ils n'ont pas forcément tous leur place. Notamment tout ce qui est bot pour lancer une suite de test n'a pas un énorme intérêt étant donné que d'autres outils comme Jenkins le font très bien.
+Nous avons vu qu'il existait des bots pour faire des tâches assez variés sur des dépôts git, cependant ils n'ont pas forcément tous leur place. Par exemple, un bot pour lancer une suite de tests n'a pas un énorme intérêt étant donné que d'autres outils comme Jenkins le font très bien. En revanche, un bot mettant à jour les dépendances ou facilitant la lecture du dêpots aux développeurs peut limiter l'erreur humaine.
 
-Pour ce qui est des difficultés rencontrées durant ces TPs, on mentionnera en première ligne les problèmes d'environnements : node et docker. Mais également le fait que seul le propriétaire du dépôt puisse enregistrer les bots rendant le travail en groupe plus compliqué : nous aurions aimé avoir un seul dépôt avec les bots de chacun ainsi au même endroit.
+Pour ce qui est des difficultés rencontrées durant ces TPs, on mentionnera en premier lieu les problèmes d'environnements : node et docker. Mais également le fait que seul le propriétaire du dépôt puisse enregistrer les bots rendant le travail en groupe plus compliqué : nous aurions aimé avoir un seul dépôt avec les bots de chacun ainsi au même endroit. Enfin, de nombreux bots doivent être self-hosted ce qui reste plus contraignant.
